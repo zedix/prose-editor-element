@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prose Editor</title>
+  </head>
+
+  <body>
+    <!-- <script src="../dist/prose-editor.js" type="module"></script> -->
+    <script
+      src="https://unpkg.com/@zedix/prose-editor-element@latest/dist/index.js"
+      type="module"
+    ></script>
+
+    <prose-editor
+      toolbar-placement="top"
+      initial-html="<p>Hello Editor</p>"
+    ></prose-editor>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const editor = document.querySlector('prose-editor');
+        editor.addEventListener('change', function (event) {
+          console.log('HTML', event.detail.html);
+          console.log('JSON', event.detail.json);
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,15 @@
+/dist
+/node_modules
+
+## Yarn Berry
+## https://yarnpkg.com/getting-started/qa#which-files-should-be-gitignored
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+
+## Misc
+.DS_Store
