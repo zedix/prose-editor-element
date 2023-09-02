@@ -1,5 +1,6 @@
 /dist
 /node_modules
+/storybook-static
 
 ## Yarn Berry
 ## https://yarnpkg.com/getting-started/qa#which-files-should-be-gitignored

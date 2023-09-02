@@ -1,0 +1,6 @@
+[build]
+  command = "yarn run build-storybook"
+  publish = "storybook-static"
+
+[build.environment]
+  YARN_VERSION = "3.6.3"
