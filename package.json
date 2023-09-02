@@ -8,19 +8,21 @@
     "url": "https://github.com/zedix/prose-editor-element.git"
   },
   "main": "dist/prose-editor.js",
-  "module": "dit/prose-editor.js",
+  "module": "dist/prose-editor.js",
   "exports": {
     ".": {
       "import": "./dist/prose-editor.js"
     }
   },
   "files": [
+    "src",
     "dist"
   ],
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && cp src/css/* -r './dist'",
     "publish": "yarn npm publish",
+    "publish:dry": "yarn pack --dry-run",
     "serve": "vite preview",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
