@@ -15,11 +15,43 @@ import { Picker } from 'emoji-mart';
 import icons from './icons';
 import styles from './prose-editor.styles.js';
 
+type ToolbarCommandName =
+  | 'heading-1'
+  | 'heading-2'
+  | 'heading-3'
+  | 'divider'
+  | 'bold'
+  | 'italic'
+  | 'underline'
+  | 'highlight'
+  | 'bulletlist'
+  | 'orderedlist'
+  | 'blockquote'
+  | 'divider'
+  | 'code-block'
+  | 'horizontal-rule'
+  | 'link'
+  | 'emoji'
+  | 'divider'
+  | 'undo'
+  | 'redo'
+  | 'attachment';
+
+// https://web.dev/more-capable-form-controls
+const formAssociatedSupported =
+  'ElementInternals' in window && 'setFormData' in window.ElementInternals;
+
 export default class ProseEditor extends LitElement {
   static styles: CSSResultGroup = styles;
 
+  // Identify the element as a form-associated custom element
+  static get formAssociated() {
+    return true;
+  }
+
   editor: Editor;
   emojiPickerElement: HTMLElement;
+  _internals: ElementInternals;
 
   @state()
   emojiPickerActive = false;
@@ -44,7 +76,7 @@ export default class ProseEditor extends LitElement {
       },
     },
   })
-  toolbar: string[] = [];
+  toolbar: ToolbarCommandName[] = [];
 
   @property({ attribute: 'toolbar-preset' })
   toolbarPreset: 'default' | 'minimal' = 'default';
@@ -63,6 +95,10 @@ export default class ProseEditor extends LitElement {
 
   constructor() {
     super();
+
+    if (formAssociatedSupported) {
+      this._internals = this.attachInternals();
+    }
     this._onKeyDown = this._onKeyDown.bind(this);
     this._onFocus = this._onFocus.bind(this);
   }
@@ -346,8 +382,7 @@ export default class ProseEditor extends LitElement {
 
       Object.assign(this.emojiPickerElement.style, {
         transition: 'opacity .2s',
-        padding: '.5rem',
-        zIndex: '1',
+        zIndex: '999',
       });
     }
 
@@ -367,13 +402,13 @@ export default class ProseEditor extends LitElement {
           middleware: [
             // https://floating-ui.com/docs/offset
             // offset() should generally be placed at the beginning of your middleware array.
-            offset(10),
+            offset(4),
             // https://floating-ui.com/docs/flip
             flip(),
             // https://floating-ui.com/docs/shift
             shift(),
           ],
-        }
+        },
       );
 
       Object.assign(this.emojiPickerElement.style, {
@@ -405,6 +440,13 @@ export default class ProseEditor extends LitElement {
   }
 
   emitChange() {
+    if (this._internals) {
+      const formData = new FormData();
+      formData.append('html', this.editor.getHTML());
+      formData.append('json', this.editor.getJSON().text || '');
+      this._internals.setFormValue(formData);
+    }
+
     this.emit('change', {
       html: this.editor.getHTML(),
       json: this.editor.getJSON(),
@@ -417,7 +459,7 @@ export default class ProseEditor extends LitElement {
         detail,
         bubbles: true,
         composed: true,
-      })
+      }),
     );
   }
 
@@ -618,7 +660,7 @@ export default class ProseEditor extends LitElement {
         >
           ${icons.get('attachment')}
         </button>`,
-      })
+      }),
     );
 
     return allToolbarItems.get(name);

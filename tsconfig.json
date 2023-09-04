@@ -1,14 +1,15 @@
 {
   "compilerOptions": {
     "strict": true,
-    "allowJs": true,
+    "lib": ["dom", "dom.Iterable", "es2021"],
     "target": "ESNext",
     "module": "ESNext",
     "moduleResolution": "node",
-    "lib": ["dom", "dom.Iterable", "es2021"],
+    "declaration": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "experimentalDecorators": true,
+    "isolatedModules": true,
     // https://lit.dev/docs/components/properties/#avoiding-issues-with-class-fields
     "useDefineForClassFields": false,
     "strictPropertyInitialization": false,
