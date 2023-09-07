@@ -439,16 +439,21 @@ export default class ProseEditor extends LitElement {
     this.emit('add-file');
   }
 
+  getHTML() {
+    const html = this.editor.getHTML();
+    return html === '<p></p>' ? '' : html;
+  }
+
   emitChange() {
     if (this._internals) {
       const formData = new FormData();
-      formData.append('html', this.editor.getHTML());
+      formData.append('html', this.getHTML());
       formData.append('json', this.editor.getJSON().text || '');
       this._internals.setFormValue(formData);
     }
 
     this.emit('change', {
-      html: this.editor.getHTML(),
+      html: this.getHTML(),
       json: this.editor.getJSON(),
     });
   }
