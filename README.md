@@ -24,13 +24,20 @@ This above global stylesheet is needed because ProseEditor must be in the light 
 - [WebKit #163921](https://bugs.webkit.org/show_bug.cgi?id=163921)
 
 ```css
-@import '@zedix/prose-editor/src/css/prose-editor.css';
+@import '@zedix/prose-editor/dist/prose-editor.css';
 ```
 
 ```html
+<script src="https://cdn.tailwindcss.com?plugins=typography"></script>
 <script type="module" src="/dist/prose-editor.js"></script>
 
-<zx-prose-editor initial-html="<p>Hello Editor</p>"></zx-prose-editor>
+<zx-prose-editor
+  editor-class="prose p-2 min-h-[20rem] focus:outline-none"
+  placeholder="Note…"
+  initial-html="<p>Hello Editor</p>"
+  toolbar-placement="bottom"
+  @change="onChange"
+></zx-prose-editor>
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {

@@ -1,6 +1,6 @@
 {
   "name": "@zedix/prose-editor-element",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "license": "MIT",
   "type": "module",
   "repository": {
@@ -12,6 +12,10 @@
     ".": {
       "types": "./dist/prose-editor.d.ts",
       "import": "./dist/prose-editor.js"
+    },
+    "./dist/prose-editor.css": {
+      "import": "./dist/prose-editor.css",
+      "require": "./dist/prose-editor.css"
     }
   },
   "files": [
