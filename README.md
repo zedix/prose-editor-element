@@ -30,12 +30,12 @@ This above global stylesheet is needed because ProseEditor must be in the light 
 ```html
 <script type="module" src="/dist/prose-editor.js"></script>
 
-<prose-editor initial-html="<p>Hello Editor</p>"></prose-editor>
+<zx-prose-editor initial-html="<p>Hello Editor</p>"></zx-prose-editor>
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {
     document
-      .querySelector('prose-editor')
+      .querySelector('zx-prose-editor')
       .addEventListener('change', function (event) {
         console.log('HTML', event.detail.html);
         console.log('JSON', event.detail.json);

@@ -44,7 +44,7 @@ export const Showcase: Story = {
   },
   render: (args: any) => html`
     <div class="grid bg-gray-50">
-      <prose-editor
+      <zx-prose-editor
         style="--theme: ${args.theme}"
         class="m-4"
         .initialHtml="${'<p><strong>Hello</strong></p>'}"
@@ -55,7 +55,7 @@ export const Showcase: Story = {
         placeholder="${args.placeholder}"
         editor-class="prose p-2 min-h-[10rem] focus:outline-none"
         @change="${onEditorChange}"
-      ></prose-editor>
+      ></zx-prose-editor>
 
       <div class="grid gap-4 my-8 p-4 h-full">
         <div>

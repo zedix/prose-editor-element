@@ -1,5 +1,5 @@
 /* Placeholder (https://tiptap.dev/api/extensions/placeholder) */
-prose-editor p.is-editor-empty:first-child::before {
+zx-prose-editor p.is-editor-empty:first-child::before {
   color: #9ca3af;
   content: attr(data-placeholder);
   float: left;
@@ -8,15 +8,15 @@ prose-editor p.is-editor-empty:first-child::before {
 }
 
 /* Highlight (https://tiptap.dev/api/marks/highlight) */
-prose-editor .ProseMirror mark {
+zx-prose-editor .ProseMirror mark {
   background-color: #faf594;
 }
 
 /* HorizontalRule (https://tiptap.dev/api/nodes/horizontal-rule) */
-prose-editor .ProseMirror hr {
+zx-prose-editor .ProseMirror hr {
   margin: 1rem 0;
 }
 
-prose-editor .ProseMirror hr.ProseMirror-selectednode {
+zx-prose-editor .ProseMirror hr.ProseMirror-selectednode {
   border-color: Highlight;
 }
