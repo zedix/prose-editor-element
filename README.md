@@ -32,11 +32,10 @@ This above global stylesheet is needed because ProseEditor must be in the light 
 <script type="module" src="/dist/prose-editor.js"></script>
 
 <zx-prose-editor
-  editor-class="prose p-2 min-h-[20rem] focus:outline-none"
+  editor-class="prose min-h-[20rem] focus:outline-none"
   placeholder="Note…"
   initial-html="<p>Hello Editor</p>"
   toolbar-placement="bottom"
-  @change="onChange"
 ></zx-prose-editor>
 
 <script>

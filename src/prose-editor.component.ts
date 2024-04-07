@@ -45,9 +45,8 @@ export default class ProseEditor extends LitElement {
   static styles: CSSResultGroup = styles;
 
   // Identify the element as a form-associated custom element
-  static get formAssociated() {
-    return true;
-  }
+  /** @nocollapse */
+  static readonly formAssociated = true;
 
   editor: Editor;
   emojiPickerElement: HTMLElement;
@@ -86,6 +85,9 @@ export default class ProseEditor extends LitElement {
 
   @property({ type: Boolean, reflect: true })
   disabled = false;
+
+  @property({ type: Boolean, reflect: true })
+  autofocus = false;
 
   @property({ type: Boolean, reflect: true })
   loading = false;
@@ -130,7 +132,7 @@ export default class ProseEditor extends LitElement {
         }),
       ],
       content: this.initialHtml || this.initialJson,
-      autofocus: !this.disabled,
+      autofocus: this.autofocus && !this.disabled,
       onCreate: () => {
         // The editor is ready.
         this.emitChange();
@@ -363,6 +365,9 @@ export default class ProseEditor extends LitElement {
 
   toggleEmojiPicker() {
     if (!this.emojiPickerElement) {
+      //const emojiData = await import('@emoji-mart/data');
+      //const { Picker } = await import('emoji-mart');
+
       // @ts-ignore
       this.emojiPickerElement = new Picker({
         parent: document.body,

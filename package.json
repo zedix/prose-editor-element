@@ -1,6 +1,6 @@
 {
   "name": "@zedix/prose-editor-element",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "license": "MIT",
   "type": "module",
   "repository": {
@@ -40,6 +40,8 @@
     "@storybook/blocks": "^7.4.0",
     "@storybook/web-components": "^7.4.0",
     "@storybook/web-components-vite": "^7.4.0",
+    "eslint": "^8.49.0",
+    "eslint-plugin-wc": "^2.0.0",
     "prettier": "^3.0.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
